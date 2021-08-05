@@ -1,4 +1,4 @@
-const Headers = ["Classes", "Base types", "Functions", "If statements", "Loops", "File include", "Templates", "Preprosessor", "VTC", "Arrays", "Member functions", "Static functions", "Namespaces"]
+const Headers = ["Classes", "Base types", "Functions", "If statements", "Loops", "File include", "Templates", "Preprosessor", "VTC", "Arrays", "Member functions", "Static functions", "Namespaces", "Function pointters"]
 
 function Generate_List(){
     const List = document.getElementById("menu")

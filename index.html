@@ -3,12 +3,16 @@
         <meta charset="UTF-8">
         <script type="text/javascript" src="Generate_Menu.js"></script>
         <link rel="stylesheet" href="Menu.css"></link>
-    </head>
+        <link rel="stylesheet" href="//unpkg.com/@highlightjs/cdn-assets@11.2.0/styles/default.min.css">
+        <script src="//unpkg.com/@highlightjs/cdn-assets@11.2.0/highlight.min.js"></script>
+        <link rel="stylesheet" href="Dark.css"></link>
+     </head>
     <body>
         <div class="Menu">
             <ul id="menu">
-
+                
             </ul>
+            <audio src="Album_pt5.mp3" class="Music" controls preload="metadata" autoplay loop></audio>     
         </div>
 
         <div class="Static">
@@ -22,11 +26,76 @@
                 <p>
                     haloo?
                 </p>
+                <h3 id="Function pointters">Function pointters</h3>
+                <p>
+                    Function pointters are one of the dynamic features Evie has.
+
+                    One of the main reasons i wanted to create this document.
+                    You see, function pointters in Evie are not same as in for example. C++.
+
+                    First let's create some functions for our example.
+
+                    <pre>
+                        <code class="language-cpp">
+    int Sum(int x, int y) {
+        return x + y 
+    }
+
+    float Sum(float x, float y) {
+        return x + y
+    }
+                        </code>
+                    </pre>
+
+                    We have to create a function pointters object:
+                    
+                    
+                    <pre>
+                        <code class="language-cpp">
+    func ptr A = Sum
+                        </code>
+                    </pre>
+
+                    You may realize by now that something doesn't seem right. 
+                    And you are right, this is where Evie will differ from most programming languages.
+
+                    Byt how does this even work? Well it doesn't (:
+
+                    For this to work the assing operator to needs to find the right suitable function to get it's address loaded,
+                    this happends when you call the function pointter.
+
+                    <pre>
+                        <code class="language-cpp">
+    int Result = A(1, 2)
+                        </code>
+                    </pre>
+
+                    Think what just happened like this.
+                    The name 'Sum' represents all functions that are named 'Sum'.
+                    This 'Sum' is like a branch and the different function overloads are like leaves on that branch.
+                    By calling the function pointter we state what leave from the branch we want to call.
+
+                    <pre>
+                        <code class="language-cpp">
+    #this is where we tell function pointter A points into function branch 'Sum'. 
+    #But no address is loaded yet.
+    func ptr A = Sum  
+    
+    #Now we fetch the function from the branch we just set earlier.
+    int Result = A(1, 2)
+    
+    #At this point we know that the function we load is the 'int Sum(int, int)'.
+    #Now we go back and tot he load moment and set the right function overload.
+
+                        </code>
+                    </pre>
+                </p>
             </div>
         </div>
 
         <script>
             Generate_List()
+            hljs.highlightAll();
         </script>
     </body>
 

@@ -12,19 +12,74 @@
             <ul id="menu">
                 
             </ul>
-            <audio src="Album_pt5.mp3" class="Music" controls preload="metadata" autoplay loop></audio>     
+        <!-- <audio src="Album_pt5.mp3" class="Music" controls preload="metadata" autoplay loop></audio>  -->
         </div>
 
         <div class="Static">
             <div class="Main">
+                <h3 id="Objects">Objects</h3>
+                <p>
+                    In Evie everything is based on the consept of objects.
+                    <br/>
+                    <br/>
+                    To construct an object, you need at least one defined word (these can be keywords, already defined object names or both) and a non defined word.
+                    <br/>
+                    <br/>
+                    This non defined word is going to represent the name of that object.
+                    <br/>
+                    <br/>
+                    Here's an example of what i mean:
+                    <pre>
+                        <code class="language-cpp">
+    type A  #Name of the object is 'A' and it's type is 'type'
+    A B     #Name of the object is 'B' and it's type is 'A' 
+    B ptr C #Name of the object is 'C' and it's type is 'B ptr'
+                        </code>
+                    </pre>
+                    
+                    When the object has been defined the inheritted words are removed from the source code list ans only the name remains there.
+                    The defined object is also pushed into the difinition list if the current scope.
+
+                </p>
                 <h3 id="Classes">Classes</h3>
                 <p>
-                    haloo?
+                    Now that everything has been parsed into objects.
+                    The compiler looks for context so that it can start adding to the AST more complex structures.
+                    <br/>
+                    <br/>
+                    These complex structures contain classes.
+                    <br/>
+                    <br/>
+                    But how does the compiler tell apart classes from functions?
+                    <br/>
+                    <br/>
+                    here is the syntax of both of them:
+
+                    <pre>
+                        <code class="language-cpp">
+    int A{
+        ..
+    }
+    int B(){
+
+    }
+                        </code>
+                    </pre>
+
+                    The above intails one class that inheriths int and is named 'A'.
+                    The other one is a function that return int and is named 'B'.
+                    <br/>
+                    <br/>
+                    The compiler tells them from apart by knowing which one takes what amount of paranthesis and what type'd are those parenthesis.
+                    <br/>
+                    <br/>
+
+
                 </p>
                 
                 <h3 id="Base types">Base types</h3>
                 <p>
-                    haloo?
+                    
                 </p>
                 <h3 id="Function pointters">Function pointters</h3>
                 <p>

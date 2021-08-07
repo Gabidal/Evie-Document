@@ -2,12 +2,13 @@ const Headers = [ "Objects", "Classes", "Base types", "Functions", "If statement
 
 function Generate_List(){
     const List = document.getElementById("menu")
+    const Main = document.getElementById("main")
 
     for (const Header of Headers){
         const Item = document.createElement("li")
         Item.className = "Element"
         Item.onclick = () => { 
-            document.getElementById(Header).scrollIntoView({behavior: "smooth"})
+            Main.scrollTo({behavior: "smooth", top: document.getElementById(Header).offsetTop - 10})
             for (const I of List.getElementsByTagName("li")){
                 I.style.backgroundColor = "rgba(255, 255, 255, 0)"
             }

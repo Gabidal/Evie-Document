@@ -8,15 +8,17 @@
         <link rel="stylesheet" href="Dark.css"></link>
      </head>
     <body>
-        <div class="Menu">
-            <ul id="menu">
-                
-            </ul>
-        <!-- <audio src="Album_pt5.mp3" class="Music" controls preload="metadata" autoplay loop></audio>  -->
+        <div class="Static1">
+            <div class="Menu">
+                <ul id="menu">
+                    
+                </ul>
+            <!-- <audio src="Album_pt5.mp3" class="Music" controls preload="metadata" autoplay loop></audio>  -->
+            </div>
         </div>
 
-        <div class="Static">
-            <div class="Main">
+        <div class="Static2">
+            <div class="Main" id="main">
                 <h3 id="Objects">Objects</h3>
                 <p>
                     In Evie everything is based on the consept of objects.
@@ -41,6 +43,7 @@
                     The defined object is also pushed into the difinition list if the current scope.
 
                 </p>
+
                 <h3 id="Classes">Classes</h3>
                 <p>
                     Now that everything has been parsed into objects.
@@ -79,8 +82,37 @@
                 
                 <h3 id="Base types">Base types</h3>
                 <p>
+                    In Evie there are no pre defined base types in the compiler source code.
+                    But don't fret, you can make your own base types.
+                    <br/>
+                    <br/>
+                    The compiler gives us access to modify some atributes of a sertain class.
+                    These atributes are: 
+                    - format
+                    Format can be integer or decimal.
+                    - size
+                    Size tell's the compiler what size is the class in guestion.
+                    The Size is expressed in bytes.
+
+                    <pre>
+                        <code class="language-cpp">
+    type integer{
+        size = 4
+        format = integer
+    }
+                        </code>
+                    </pre>
+
+                    The current implementation of the base types are located in STD/Types.e
+
+
+                </p>
+
+                <h3 id="Functions">Functions</h3>
+                <p>
                     
                 </p>
+
                 <h3 id="Function pointters">Function pointters</h3>
                 <p>
                     Function pointters are one of the dynamic features Evie has.
@@ -140,7 +172,7 @@
     int Result = A(1, 2)
     
     #At this point we know that the function we load is the 'int Sum(int, int)'.
-    #Now we go back and tot he load moment and set the right function overload.
+    #Now we go back to the load moment and set the right function overload.
 
                         </code>
                     </pre>

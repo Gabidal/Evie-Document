@@ -108,7 +108,69 @@
 
                 </p>
 
-                <h3 id="Functions">Functions</h3>
+                <h3 id="Functions imports">Functions imports</h3>
+                <p>
+                    When a function is imported the return type and the parameters are represented as integers and with decimal or integer word to represent the format.
+                    <br/>
+                    <br/>
+                    When the parser phase has gone by and the post-prosessor phase has began. The shattered information of the parameters and return types size and format are combined.
+                    
+                </p>
+
+                <h3 id="File include">File include</h3>
+                <p>
+                    File including is another advanced feature in Evie.
+                    The file include system can import functions from:
+                    <br/>
+                    - Dll files
+                    <br/>
+                    - Lib files
+                    <br/>
+                    - Evie files
+                    <br/>
+                    - Assembly files
+                    <br/>
+                    - URL
+                    <br/>
+                    <br/>
+                    The system that handles these file includes is called Docker.
+                    The Docker tell's the difference between those file types above by reading the magic number in the header of that file.
+                    <br/>
+                    <br/>
+                    Normal and assembly files dont have any magic numbers, 
+                    so for assembly files to work you need to put at the start of the assembly file this text:
+                    <br/> 
+                    "#analyze". 
+                    <br/>
+                    In the future, Docker is going to fix this need of "#analyze" at the start of the file by reading the file type from the file name, as well as the magic number in the header of that file.
+                </p>
+
+                <h3 id="Templates">Templates</h3>
+                <p>
+                    At Parser time the template functions and template classes are stored as template users. 
+                    If however the template class is defined during a object definition, the template class will be copied and this copied version will be overwritten it's all template usages by the new template type.
+
+                    <pre class="language-cpp">
+                        <code>
+    type A&ltT&gt{
+        T ptr Member1 = Allocate&ltT&gt(123)
+    }
+
+    int main(){
+        #at this X variable definition stage the template class has been copied,
+        #and the copied version is going to be overwritten by the new template type.
+        A&ltint&gt X.A()
+        retrun X.Member1[0]
+    }
+                        </code>
+                    </pre>
+
+                    But if there is a function that is not inside a template type class, this template function is going to be copied after the parsing sequense at post-prosessor.
+                    This because wemight not be able to tell what function to call if there are multiple function overloads.
+
+                </p>
+
+                <h3 id="Pointers">Pointers</h3>
                 <p>
                     
                 </p>
@@ -177,6 +239,7 @@
                         </code>
                     </pre>
                 </p>
+
             </div>
         </div>
 

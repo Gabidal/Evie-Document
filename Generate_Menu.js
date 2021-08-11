@@ -1,4 +1,4 @@
-const Headers = [ "Objects", "Classes", "Base types", "Functions imports", "File include", "Templates", "Pointers", "Preprosessor", "VTC", "Function pointters"]
+const Headers = [ "Objects", "Classes", "Base types", "Functions imports", "File include", "Templates", "Pointers", "Preprosessor", "VTC", "Function pointers", "Temporary value"]
 
 function Generate_List(){
     const List = document.getElementById("menu")
@@ -19,4 +19,9 @@ function Generate_List(){
         List.appendChild(Item)
 
     }
+}
+
+function Goto(Title_Name){
+    const Main = document.getElementById("main")
+    Main.scrollTo({behavior: "smooth", top: document.getElementById(Title_Name).offsetTop - 10})
 }

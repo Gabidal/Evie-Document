@@ -172,10 +172,66 @@
 
                 <h3 id="Pointers">Pointers</h3>
                 <p>
-                    
+                    Pointers are yet another dynamic feature in Evie.
+                    The compiler wrapr and un-wraps the pointer layers automatically for you.
+                    <pre class="language-cpp">
+                        <code>
+        int Foo(int ptr X){
+            #Here the pointer layer is automatically un-wrapped
+            #and returned the value the pointer points to.
+            return X
+        }
+
+        int ptr Bar(int X){
+            #Here we load the address of the variable X and return the address.
+            return X
+        }
+                        </code>
+                    </pre>
+                    The compiler also supports wrapping and un-wrapping nested pointers.
+
+                    <pre class="language-cpp">
+                        <code>
+        int Foo(int X){
+            #This wont work because the second layer of loading loads nothing.
+            #int ptr ptr ptr Y = X
+
+            #This will work.
+            int ptr Y = X
+
+            #This in turn will work because you can un-wrap the pointers infinitely.
+            int Z = Y
+
+
+        }
+                        </code>
+                    </pre>
+
+                    Every time you load an address of a certain variable, this will create a <div class="Link" onclick="Goto('Temporary value')">temporary value</div> that is usually passed to the loader.
+                    <br/>
+                    <br/>
+                    When the previous 'ptr' has caused a temporary value the next 'ptr' keyword can not operate.
+                    <br/>
+                    <br/>
+                    You can of course also do this and it is valid:
+
+                    <pre class="language-cpp">
+                        <code>
+    int Foo(int X){
+        int ptr A = X
+        int ptr ptr B = A
+        int ptr ptr ptr C = B
+        int ptr ptr ptr ptr D = C
+
+        #this will return the value of X
+        return D
+    }
+                        </code>
+                    </pre>
+            
                 </p>
 
-                <h3 id="Function pointters">Function pointters</h3>
+                <h3 id="Function pointers">Function pointters</h3>
                 <p>
                     Function pointters are one of the dynamic features Evie has.
 
@@ -238,6 +294,47 @@
 
                         </code>
                     </pre>
+                </p>
+
+                <h3 id="Temporary value">Temporary value</h3>
+                <p>
+                    A temporary value represents a value that has been loaded into a register.
+                    <br/>
+                    <br/>
+                    Where can this temporary value be generated?
+                    <br/>
+                    Here is an example:
+                    <pre class="language-cpp">
+                        <code>
+    func Foo(int x, int y){
+        int a = x + y
+    }
+                        </code>
+                    </pre>
+
+                    Here the 'x + y' are first added together this summed value is stored into a register. This register can act as a temporary value.
+                    As you already might know you cannot load a registers address, simply because they do not have a memory location that we can access.
+                    <br/>
+                    <br/>
+                    And that is why you cannot load a temporary value in a scenario like this here:
+                    <pre class="language-cpp">
+                        <code>
+    func Foo1(int x){
+        int ptr a = x
+    }
+
+    func Foo2(int x){
+        int ptr ptr a = x
+    }
+                        </code>
+                    </pre>
+
+                    In the function Foo1, the 'x' address is loaded into a register, and it is stored into the pointer 'a'.
+                    <br/>
+                    <br/>
+                    But in Foo2, the address of 'x' is first loaded into a register,
+                    This register is going to be loaded as it would have a memory address, but it does not.
+                    And this creates a big problem when you try to load a variable address multiple times in a row.
                 </p>
 
             </div>

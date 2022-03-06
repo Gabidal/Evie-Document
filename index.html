@@ -231,6 +231,54 @@
             
                 </p>
 
+                <h3 id="Preprosessor">Preprosessor</h3>
+                <p>
+                    The preprosessor in Evie offers us with compile time variables.
+                    <br/>
+                    Here is a list of the compile time variables:
+                    <pre class="language-cpp">
+                        <code>
+    char ptr SOURCE_FILE            //This gives the name of the source file that is compiled.
+
+    char ptr DESTINATION_FILE       //This gives the name of the file that the output is going to be written to.
+
+    char ptr OS                     //This tells to witch operating system the code will be compiled. (win, unix)
+
+    char ptr HOST_OS                //This tells in what operating system the compiler is running. (win, unix)
+
+    char ptr ARCHITECTURE           //This gives the architecture that is used. (x86, arm)
+
+    char ptr FORMAT                 //This gives the format that the output file is formatted to. (exe, dll, lib)
+
+    int BYTES_MODE                  //This gives the max architecture bytes size. (8, 4, 2, 1) (8 is same as 64 and 4 is same as 32, etc)
+
+    int true                        //This gives the value of true. (1)
+
+    int false                       //This gives the value of false. (0)
+                        </code>
+                    </pre>
+                    The preprosessor also brings some useful tools, like preprosessor if statements.
+                    <br/>
+                    Here is an example:
+                    <pre class="language-cpp">
+                        <code>
+    if (OS == "win")                    //check is this code is compiled in windows.
+    {                  
+        if (ARCHITECTURE == "x86")      //chek if the architecture is x86.
+        {
+            if (BYTES_MODE == 8)        //check if the architecture size can reach 64 bits.
+            {
+                if (FORMAT == "exe")    //check to what format the compiled code will be written to.
+                {
+                    #This is the code that will be executed if the preprosessor conditions are met.
+                }
+            }
+        }
+    }
+                        </code>
+                    </pre>
+                </p>
+
                 <h3 id="Function pointers">Function pointters</h3>
                 <p>
                     Function pointters are one of the dynamic features Evie has.
@@ -336,7 +384,69 @@
                     This register is going to be loaded as it would have a memory address, but it does not.
                     And this creates a big problem when you try to load a variable address multiple times in a row.
                 </p>
+                
+                <h3 id="Const meaning">Const meaning</h3>
+                <p>
+                    Const is a internal feature of Evie, the workings of a consted variable is basically the same thing as a const in C++.
+                    <br/>
+                    In other words, a consted variable is a variable that can not be changed after initialization.
+                    <br/>
+                    Here is an example:
+                    <pre class="language-cpp">
+                        <code>
+    type int{
+        size = 4
+    }
+                        </code>
+                    </pre>
+                    In the example above the class int is created with a size of 4 bytes.
+                    <br/>
+                    This size variable is an actual member inside the int class, 
+                    <br/>
+                    the difference is that the size variable cannot be changed after initializing the value of 4 to it.
+                    <br/>
+                    <br/>
+                    Same applies to strings that point to a data section.
+                    <br/>
+                    Here is an example:
+                    <pre class="language-cpp">
+                        <code>
+    char ptr Foo = "ABCDEFG"
+                        </code>
+                    </pre>
+                    In the example above the string is first made it's own label in the data section with it's data that is the "ABCDEFG" string.
+                    <br/>
+                    After the string is made it's own label, the assing operator right side is a pointer to that label.
+                    <br/>
+                    <br/>
+                    This pointer is usually named like this: 'S0', 'S1', 'S2' etc.
+                    <br/>
+                    This pointer to the label is a const char ptr that cannot be changed.
+                </p>
 
+                <h3 id="Static meaning">Static meaning</h3>
+                <p>
+                    Static is same as in C++. Where a static variable is declared once and it's value is the same for all instances of the class.
+                    <br/>
+                    <br/>
+                    Namespaces are just classes that are static typed. 
+                    <br/>
+                    <br/>
+                    A static class gives all it's members the static keyword, making all of them static.
+                    <br/>
+                    Here is an example:
+                    <pre class="language-cpp">
+                        <code>
+    static Foo{
+        int x = 1
+        int y = 2
+    }
+                        </code>
+                    </pre>
+                    In the example above the Foo class is static. This makes the Foo class a namespace.
+                    <br/>
+                    This means that members x and y are also inheriting static keyword.
+                </p>
             </div>
         </div>
 

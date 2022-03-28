@@ -1,25 +1,29 @@
+[![Total alerts](https://img.shields.io/lgtm/alerts/g/Gabidal/Evie.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/Gabidal/Evie/alerts/)
+[![Language grade: C/C++](https://img.shields.io/lgtm/grade/cpp/g/Gabidal/Evie.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/Gabidal/Evie/context:cpp)
 # Evie- lang
 
 ### Catalog:
 - #### Manual
-    - ##### <link href="Type">Type.</link>
-    - ##### Base type.
-    - ##### Static member.
-    - ##### Member function.
-    - ##### Function.
-    - ##### Static funciton.
-    - ##### If statement.
-    - ##### Loop.
-    - ##### File include.
-    - ##### Manual header info construction.
-    - ##### Asm file including.
-    - ##### VTC.
-    - ##### Array.
-    - ##### Preprosessor.
-    - ##### Arguments.
-    - ##### Notices!
+    - [Type](#type).
+    - [Base type](#base-type).
+    - [Static member](#static-member).
+    - [Member function](#member-function).
+    - [Function](#function).
+    - [Static funciton](#static-function).
+    - [If statement](#if-statement).
+    - [Loop](#loop).
+    - [File include](#file-include).
+    - [Manual header info construction](#manual-header-info-construction).
+    - [Asm file including](#asm-file-including).
+    - [VTC](#vtc).
+    - [Array](#array).
+    - [Preprosessor](#preprosessor).
+    - [Arguments](#arguments).
+    - [Notices!](#notices)
 
-### <a name="Type">Type</a>
+## Manual
+
+### Type
 #### Types are like classes in any other programming language.
 #### Syntax:
 ```
@@ -145,7 +149,7 @@
             }
         }
         return x
-    }
+    } 
 ```
 
 ### File include

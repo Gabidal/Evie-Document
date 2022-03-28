@@ -447,6 +447,34 @@
                     <br/>
                     This means that members x and y are also inheriting static keyword.
                 </p>
+
+                <h3 id="Const char pointters">Const char pointters</h3>
+                <p>
+                    Const char pointters are a similiar feature to C++'s const char* pointers.
+                    <br/>
+                    <br/>
+                    Const char pointters are used to point to a string in the data section.
+                    That is if the const char pointer is either longer than 4 characters or it's address is loaded.
+                    <br/>
+                    <br/>
+                    Here is an example:
+                    <pre class="language-cpp">
+                        <code>
+    char ptr Foo = "ABCDEFG"    //Now the string is made it's own label in the data section, and its address is stored in the Foo pointer.
+
+    char Bar = "a"              //Now the string can be compressed into a number with the type of a char.
+    
+    int Baz = "1234"->int       //Because the lenght of the string here is less than 5, the string is compressed into a number.
+                        </code>
+                    </pre>
+                    In the example above the char ptr Foo, loads the address of the "ABCDEFG" string into it.
+                    <br/>
+                    <br/>
+                    The char Bar is a char that is compressed into a single byte number.
+                    <br/>
+                    <br/>
+                    The int Baz is a int that is compressed into a single 4 byte integer number.
+                </p>
             </div>
         </div>
 

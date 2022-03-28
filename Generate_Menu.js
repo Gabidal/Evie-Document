@@ -11,7 +11,8 @@ const Headers = [
     "Function pointers", 
     "Temporary value", 
     "Const meaning", 
-    "Static meaning"]
+    "Static meaning",
+    "Const char pointters"]
 
 function Generate_List(){
     const List = document.getElementById("menu")

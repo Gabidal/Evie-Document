@@ -10,6 +10,7 @@
     <body>
         <div class="Static1">
             <div class="Menu">
+                <img src="Evie_Logo.png" alt="Logo" class="Logo">
                 <ul id="menu">
                     
                 </ul>
@@ -76,7 +77,23 @@
                     The compiler tells them from apart by knowing which one takes what amount of paranthesis and what type'd are those parenthesis.
                     <br/>
                     <br/>
+                    Evie adds many new features that can be problem when trying to use Evie output with other languages.
+                    <br/>
+                    You can disable these inserted features by giving the class a inheritant named: "plain"
 
+                    <pre>
+                        <code class="language-cpp">
+    plain type A{
+        ..
+    }
+
+                        </code>
+                    </pre>
+                    So, what horrible non-standard features are then applied if i DONT use the 'plain' keyword?
+                    <br/>
+                    First of all, Evie re-arranges the members to size order, so that moving members around would be little bit more faster.
+                    <br/>
+                    Second, Evie adds padding to the end of the class, so that objects in the cache are aligned to the same cache row.
 
                 </p>
                 
@@ -108,13 +125,79 @@
 
                 </p>
 
-                <h3 id="Functions imports">Functions imports</h3>
+                <h3 id="Function imports">Functions imports</h3>
                 <p>
-                    When a function is imported the return type and the parameters are represented as integers and with decimal or integer word to represent the format.
+                    How Evie imports extern functino and can manage to use it's own base types works like this:
                     <br/>
                     <br/>
-                    When the parser phase has gone by and the post-prosessor phase has began. The shattered information of the parameters and return types size and format are combined.
+                    The compiler first makes a function prototype, where the parameter information is given as sizes, and formats (e.g integer, decimal).
+                    <br/>
+                    <br/>
+
+                    <pre class="language-cpp">
+                        <code>
+    
+    (4 integer) A(1 integer, 4 decimal)
+
+                        </code>
+                    </pre>
+
+                    This information is also given for the returning size of the function if the mangling in question has returning information.
+                    <br/>
+                    <br/>
+                    At post-prosessor when all the classes and their sizes are known, we replace the function prototypes parameter and returning information that was stored as sizes, and formats with the corresponding class types.
+                    <br/>
+                    <br/>
+
+                    <pre class="language-cpp">
+                        <code>
+
+    int A(char, float)
+
+                        </code>
+                    </pre>
+
+
+                    But how does Evie know what mangling identifiers responds to what size?
+                    <br/>
+                    <br/>
+                    Evie has an internal database where it has the corresponding information about the mangling identifiers for every mangling standard that it supports.
+                    <br/>
+                    <br/>
+
+                    <pre class="language-cpp">
+                        <code>
+
+    i -> 4, integer
+    c -> 1, integer
+    f -> 4, decimal
+    P -> ptr
+    ...
+
+                        </code>
+                    </pre>
                     
+                </p>
+
+                <h3 id="Function exports">Function exports</h3>
+                <p>
+                    When a function is exported it is mangled by default with the C++ standard.
+                    <br/>
+                    <br/>
+                    If you want to give this function to some other language, you can give it the 'plain' keyword.
+                    <br/>
+                    This keyword keeps the final label name of the function to be same as the declared name.
+                    <br/>
+                    <br/>
+                    There are also other keywords and mangling options.
+                    <br/>
+                    The mangling options are: 'evie', 'vivid'
+                    <br/>
+                    <br/>
+                    What the 'evie' mangling does is, it adds the returniong information to the final label name.
+                    <br/>
+                    This in turn gives us the ability to make function overloads that differ just at the returning information.
+
                 </p>
 
                 <h3 id="File include">File include</h3>

@@ -2,7 +2,8 @@ const Headers = [
     "Objects", 
     "Classes", 
     "Base types", 
-    "Functions imports", 
+    "Function imports", 
+    "Function exports",
     "File include", 
     "Templates", 
     "Pointers", 
@@ -12,7 +13,8 @@ const Headers = [
     "Temporary value", 
     "Const meaning", 
     "Static meaning",
-    "Const char pointters"]
+    "Const char pointters",
+]
 
 function Generate_List(){
     const List = document.getElementById("menu")

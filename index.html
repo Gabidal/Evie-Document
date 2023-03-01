@@ -23,7 +23,7 @@
 
         <div class="Static2">
             <div class="Main" id="main">
-                <h3 id="Objects">Objects</h3>
+                <h3 class="Tittle" id="Objects">Objects</h3>
                 <p>
                     In Evie everything is based on the consept of objects.
                     <br/>
@@ -48,7 +48,7 @@
 
                 </p>
 
-                <h3 id="Classes">Classes</h3>
+                <h3 class="Tittle" id="Classes">Classes</h3>
                 <p>
                     Now that everything has been parsed into objects.
                     The compiler looks for context so that it can start adding to the AST more complex structures.
@@ -100,7 +100,7 @@
 
                 </p>
                 
-                <h3 id="Base types">Base types</h3>
+                <h3 class="Tittle" id="Base types">Base types</h3>
                 <p>
                     In Evie there are no pre defined base types in the compiler source code.
                     But don't fret, you can make your own base types.
@@ -124,18 +124,14 @@
                     </pre>
 
                     The current implementation of the base types are located in STD/Types.e
-
-
+                    <br/>
+                    Note: All classes that only contain as member variables the 'size' and 'format' are categorized as Base Types.
+                    member functions will not affect this classification.
                 </p>
 
-                <h3 id="Function imports">Functions imports</h3>
+                <h3 class="Tittle" id="Function imports">Functions imports</h3>
                 <p>
-                    How Evie imports extern functino and can manage to use it's own base types works like this:
-                    <br/>
-                    <br/>
-                    The compiler first makes a function prototype, where the parameter information is given as sizes, and formats (e.g integer, decimal).
-                    <br/>
-                    <br/>
+                    Because of how Evie typing works Evie will generate function prototypes like this:
 
                     <pre class="language-cpp">
                         <code>
@@ -145,13 +141,39 @@
                         </code>
                     </pre>
 
-                    This information is also given for the returning size of the function if the mangling in question has returning information.
+                    Note: You as the user don't have to write this kind of syntax.
                     <br/>
+                    When including a DLL, ASM, LIB, OBJ, etc... files that are not your usual txt files, instead with the power of symbol table we can extract the function prototype information.
                     <br/>
-                    At post-prosessor when all the classes and their sizes are known, we replace the function prototypes parameter and returning information that was stored as sizes, and formats with the corresponding class types.
+                    When the symbol table has been analyzed we will extract the mangled symbols.
+                    From mangled names following '_Z' we will deploy C++ mangler, which will extract the following:
                     <br/>
+                     - Name
+                     <br/>
+                     - Parameters
+                    <br/>  
+                    Note: Evie supports C++, C, Evie, Vivid symbol mangling and de-mangling.
                     <br/>
+                    Now that the information has been extracted from the mangled symbol, we need to re-assign the typings to the correct typings of Evie.
+                    And this is where the:
 
+                    <pre class="language-cpp">
+                        <code>
+    
+    (4 integer) A(1 integer, 4 decimal)
+
+                        </code>
+                    </pre>
+
+                    Syntax was made, here only the most important information is forwarded to Evie post-processor. 
+                    The first parenthesis represent the return type, although C++ mangling doesn't support return types, this is usually generated for those mangling types that have return types.
+                    The number represents the size in bytes and the word "integer" represents the format of the class type.
+                    The letter 'A' in this case is just the name of the function.
+                    The parenthesis following the name contains the parameters.
+
+                    At post-processor when all the classes and their sizes are known, we replace the function prototypes parameter and returning information that was stored as sizes, and formats with the corresponding class types.
+                    <br/>
+                    
                     <pre class="language-cpp">
                         <code>
 
@@ -160,8 +182,10 @@
                         </code>
                     </pre>
 
+                    Note: Only Base types are searched for suitable candidate to fill the '(size, format)' format.
+                    To see what defines a Base type see: 
+                    <a onclick="Goto('Base types')" class="Link">Base types</a>
 
-                    But how does Evie know what mangling identifiers responds to what size?
                     <br/>
                     <br/>
                     Evie has an internal database where it has the corresponding information about the mangling identifiers for every mangling standard that it supports.
@@ -182,7 +206,7 @@
                     
                 </p>
 
-                <h3 id="Function exports">Function exports</h3>
+                <h3 class="Tittle" id="Function exports">Function exports</h3>
                 <p>
                     When a function is exported it is mangled by default with the C++ standard.
                     <br/>
@@ -203,7 +227,7 @@
 
                 </p>
 
-                <h3 id="File include">File include</h3>
+                <h3 class="Tittle" id="File include">File include</h3>
                 <p>
                     File including is another advanced feature in Evie.
                     The file include system can import functions from:
@@ -231,7 +255,7 @@
                     In the future, Docker is going to fix this need of "#analyze" at the start of the file by reading the file type from the file name, as well as the magic number in the header of that file.
                 </p>
 
-                <h3 id="Templates">Templates</h3>
+                <h3 class="Tittle" id="Templates">Templates</h3>
                 <p>
                     At Parser time the template functions and template classes are stored as template users. 
                     If however the template class is defined during a object definition, the template class will be copied and this copied version will be overwritten it's all template usages by the new template type.
@@ -256,7 +280,7 @@
 
                 </p>
 
-                <h3 id="Pointers">Pointers</h3>
+                <h3 class="Tittle" id="Pointers">Pointers</h3>
                 <p>
                     Pointers are yet another dynamic feature in Evie.
                     The compiler wrapr and un-wraps the pointer layers automatically for you.
@@ -317,9 +341,9 @@
             
                 </p>
 
-                <h3 id="Preprosessor">Preprosessor</h3>
+                <h3 class="Tittle" id="Preprosessor">Preprocessor</h3>
                 <p>
-                    The preprosessor in Evie offers us with compile time variables.
+                    The preprocessor in Evie offers us with compile time variables.
                     <br/>
                     Here is a list of the compile time variables:
                     <pre class="language-cpp">
@@ -343,7 +367,7 @@
     int false                       //This gives the value of false. (0)
                         </code>
                     </pre>
-                    The preprosessor also brings some useful tools, like preprosessor if statements.
+                    The preprocessor also brings some useful tools, like preprocessor if statements.
                     <br/>
                     Here is an example:
                     <pre class="language-cpp">
@@ -356,7 +380,7 @@
             {
                 if (FORMAT == "exe")    //check to what format the compiled code will be written to.
                 {
-                    #This is the code that will be executed if the preprosessor conditions are met.
+                    #This is the code that will be executed if the preprocessor conditions are met.
                 }
             }
         }
@@ -365,7 +389,7 @@
                     </pre>
                 </p>
 
-                <h3 id="Function pointers">Function pointters</h3>
+                <h3 class="Tittle" id="Function pointers">Function pointters</h3>
                 <p>
                     Function pointters are one of the dynamic features Evie has.
 
@@ -430,7 +454,7 @@
                     </pre>
                 </p>
 
-                <h3 id="Temporary value">Temporary value</h3>
+                <h3 class="Tittle" id="Temporary value">Temporary value</h3>
                 <p>
                     A temporary value represents a value that has been loaded into a register.
                     <br/>
@@ -471,7 +495,7 @@
                     And this creates a big problem when you try to load a variable address multiple times in a row.
                 </p>
                 
-                <h3 id="Const meaning">Const meaning</h3>
+                <h3 class="Tittle" id="Const meaning">Const meaning</h3>
                 <p>
                     Const is a internal feature of Evie, the workings of a consted variable is basically the same thing as a const in C++.
                     <br/>
@@ -510,7 +534,7 @@
                     This pointer to the label is a const char ptr that cannot be changed.
                 </p>
 
-                <h3 id="Static meaning">Static meaning</h3>
+                <h3 class="Tittle" id="Static meaning">Static meaning</h3>
                 <p>
                     Static is same as in C++. Where a static variable is declared once and it's value is the same for all instances of the class.
                     <br/>
@@ -534,7 +558,7 @@
                     This means that members x and y are also inheriting static keyword.
                 </p>
 
-                <h3 id="Const char pointters">Const char pointters</h3>
+                <h3 class="Tittle" id="Const char pointters">Const char pointters</h3>
                 <p>
                     Const char pointters are a similiar feature to C++'s const char* pointers.
                     <br/>

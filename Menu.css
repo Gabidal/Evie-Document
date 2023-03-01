@@ -84,3 +84,24 @@ li:hover{
 h3{
     padding-top: 5em;
 }
+
+
+.Selected{
+    animation-duration: 2s;
+    animation-name: flash;
+    animation-iteration-count: 1;
+    transition: ease-in-out 2s;
+}
+
+@keyframes flash {
+    0% {
+        background-color: rgb(240, 240, 240);
+    }
+    50% {
+        background-color: rgba(255, 255, 255, 0.678);
+    }
+    100% {
+        background-color: rgba(240, 240, 240, 0);
+    }
+}
+

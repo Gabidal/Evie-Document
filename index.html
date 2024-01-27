@@ -255,6 +255,22 @@
                     In the future, Docker is going to fix this need of "#analyze" at the start of the file by reading the file type from the file name, as well as the magic number in the header of that file.
                 </p>
 
+                <h3 class="Tittle" id="Pre-Compiled Source handling (PCS)">Pre-Compiled Source handling (PCS)</h3>
+                <p>
+                    PCS are Pre-Compiled Source files, which are wither imported to the Evie project by: 
+                    <pre class="language-cpp">
+                        <code>
+
+    use "some_lib.dll"
+
+                        </code>
+                    </pre>
+
+                    PCS files which are imported in the Evie source files, alway get Liquefied.
+                    On the other hand PCS files, which are not mentioned in any Evie source (*.e) file are only Linked and NOT Liquefied!
+                    This means the user can specifically request Evie to either Link or Liquify the PCS file where the specific symbol arises from.
+                </p>
+
                 <h3 class="Tittle" id="Templates">Templates</h3>
                 <p>
                     At Parser time the template functions and template classes are stored as template users. 

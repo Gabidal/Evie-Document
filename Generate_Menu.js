@@ -5,6 +5,7 @@ const Headers = [
     "Function imports", 
     "Function exports",
     "File include", 
+    "Pre-Compiled Source handling (PCS)",
     "Templates", 
     "Pointers", 
     "Preprosessor", 
